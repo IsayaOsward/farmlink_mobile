@@ -1,5 +1,6 @@
 import 'package:dash_chat_2/dash_chat_2.dart';
 import 'package:flutter/material.dart';
+import 'package:heroicons/heroicons.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({super.key});
@@ -33,7 +34,22 @@ class ChatPageState extends State<ChatPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Basic example'),
+        leading: GestureDetector(
+          onTap: () => Navigator.pop(
+            context,
+          ),
+          child: HeroIcon(
+            HeroIcons.arrowLeft,
+            color: Colors.white,
+          ),
+        ),
+        title: const Text(
+          'AgrAI',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        backgroundColor: Colors.green,
       ),
       body: DashChat(
         currentUser: user,

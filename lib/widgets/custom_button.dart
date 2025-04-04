@@ -32,14 +32,14 @@ class CustomButton extends StatelessWidget {
       return ElevatedButton(
         onPressed: onPressed,
         style: ButtonStyle(
-          backgroundColor: WidgetStatePropertyAll(colorScheme.primary),
+          backgroundColor: WidgetStatePropertyAll(Colors.green),
           foregroundColor: WidgetStatePropertyAll(colorScheme.onPrimary),
           padding: const WidgetStatePropertyAll(
-            EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+            EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           ),
           shape: WidgetStatePropertyAll(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(30),
             ),
           ),
         ),

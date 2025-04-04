@@ -1,3 +1,3 @@
 class ImageAssets{
-  static String logo = "assets/images/sample_logo.jpg";
+  static String logo = "assets/images/sample_logo.png";
 }

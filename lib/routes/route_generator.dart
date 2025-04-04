@@ -5,7 +5,8 @@ import '../screens/authentication/login.dart';
 import '../screens/authentication/registration.dart';
 import '../screens/authentication/reset_password.dart';
 import '../screens/home_pages/chat_page.dart';
-import '../screens/home_pages/home_page.dart';
+import '../screens/home_pages/main_page.dart';
+import '../screens/on_boarding_screen/welcome_page.dart';
 import '../screens/welcome/spash.dart';
 import 'route_names.dart';
 
@@ -20,7 +21,8 @@ class RouteGenerator {
       FarmLinkRoutes.registrationScreen: (_, __) => Registration(),
       FarmLinkRoutes.onBoardingScreen: (_, __) => ChangePassword(),
       FarmLinkRoutes.chatScreen: (_, __) => ChatPage(),
-      FarmLinkRoutes.homePage: (_, __) => HomePage(),
+      FarmLinkRoutes.homePage: (_, __) => MainScreen(),
+      FarmLinkRoutes.onBoardingScreen: (_, __) => OnboardingScreen(),
     };
 
     final routeBuilder = routes[settings.name];

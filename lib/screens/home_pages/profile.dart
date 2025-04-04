@@ -8,19 +8,6 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
-        leadingIcon: HeroIcon(HeroIcons.userCircle),
-        title: "Welcome",
-        subTitle: "Admin",
-        actionButtons: [
-          IconButton(
-            onPressed: () {},
-            icon: HeroIcon(
-              HeroIcons.bell,
-            ),
-          ),
-        ],
-      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -110,7 +97,7 @@ class Profile extends StatelessWidget {
                     "Log out",
                   ),
                   trailing: HeroIcon(
-                    HeroIcons.arrowLeft,
+                    HeroIcons.arrowRight,
                   ),
                 ),
               ),
