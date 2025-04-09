@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:heroicons/heroicons.dart';
 
 import 'product_details_page.dart';
 
@@ -7,10 +6,10 @@ class ProductList extends StatefulWidget {
   const ProductList({super.key});
 
   @override
-  _ProductListState createState() => _ProductListState();
+  ProductListState createState() => ProductListState();
 }
 
-class _ProductListState extends State<ProductList> {
+class ProductListState extends State<ProductList> {
   final List<Map<String, dynamic>> products = [
     {
       'name': 'Tomato',

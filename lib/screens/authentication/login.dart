@@ -1,5 +1,6 @@
 import 'package:farmlink/routes/route_names.dart';
 import 'package:farmlink/screens/home_pages/chat_page.dart';
+import 'package:farmlink/screens/home_pages/main_page.dart';
 import 'package:farmlink/utils/image_assets.dart';
 import 'package:farmlink/widgets/custom_button.dart';
 import 'package:farmlink/widgets/custom_text_form_field.dart';
@@ -24,10 +25,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
     prefix: const HeroIcon(HeroIcons.lockClosed),
   );
 
-  final submitButton = CustomButton(buttonText: "Login", onPressed: () {});
-
-  late AnimationController _animationController;
-  late Animation<double> _scaleAnimation;
+  late final CustomButton submitButton;
 
   @override
   void initState() {
@@ -45,7 +43,22 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
         curve: Curves.easeInOut,
       ),
     );
+
+    // Initialize submitButton
+    submitButton = CustomButton(
+      buttonText: "Login",
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (builder) => MainScreen()),
+        );
+      },
+    );
   }
+
+  late AnimationController _animationController;
+  late Animation<double> _scaleAnimation;
+
 
   @override
   void dispose() {

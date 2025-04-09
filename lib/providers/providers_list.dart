@@ -1,3 +1,6 @@
+import 'package:farmlink/providers/auth_provider.dart';
+import 'package:farmlink/providers/biometric_provider.dart';
+import 'package:farmlink/providers/current_page_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'app_theme_provider.dart';
@@ -17,6 +20,9 @@ Widget multiProvider({required Widget child}) {
       _createProvider(() => LanguageProvider()),
       _createProvider(() => AppThemeProvider()),
       _createProvider(() => BottomNavigationProvider()),
+      _createProvider(() => AuthProvider()),
+      _createProvider(() => CurrentPageProvider()),
+      _createProvider(() => BiometricProvider()),
     ],
     child: child,
   );

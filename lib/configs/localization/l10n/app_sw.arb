@@ -1,0 +1,134 @@
+{
+  "locale": "sw",
+  "@locale": {
+    "description": "Kitambulisho cha lugha"
+  },
+  "appTitle": "Programu Yangu",
+  "@appTitle": {
+    "description": "Jina la programu"
+  },
+  "welcomeMessage": "Karibu kwenye Programu Yangu",
+  "@welcomeMessage": {
+    "description": "Ujumbe wa kukaribisha mtumiaji kwenye programu"
+  },
+  "login": "Ingia",
+  "@login": {
+    "description": "Kitufe cha kuingia kwenye programu"
+  },
+  "logout": "Ondoka",
+  "@logout": {
+    "description": "Kitufe cha kutoka kwenye akaunti"
+  },
+  "settings": "Mipangilio",
+  "@settings": {
+    "description": "Sehemu ya mipangilio ya programu"
+  },
+  "language": "Lugha",
+  "@language": {
+    "description": "Chaguo la kubadilisha lugha"
+  },
+  "english": "Kiingereza",
+  "@english": {
+    "description": "Chaguo la lugha ya Kiingereza"
+  },
+  "spanish": "Kihispania",
+  "@spanish": {
+    "description": "Chaguo la lugha ya Kihispania"
+  },
+  "profile": "Wasifu",
+  "@profile": {
+    "description": "Sehemu ya wasifu wa mtumiaji"
+  },
+  "home": "Nyumbani",
+  "@home": {
+    "description": "Sehemu ya mwanzo ya programu"
+  },
+  "about": "Kuhusu",
+  "@about": {
+    "description": "Sehemu inayotoa maelezo kuhusu programu"
+  },
+  "contact": "Mawasiliano",
+  "@contact": {
+    "description": "Sehemu ya mawasiliano ya programu"
+  },
+  "help": "Msaada",
+  "@help": {
+    "description": "Sehemu ya msaada kwa watumiaji"
+  },
+  "search": "Tafuta",
+  "@search": {
+    "description": "Kitufe au sehemu ya kutafuta kitu kwenye programu"
+  },
+  "save": "Hifadhi",
+  "@save": {
+    "description": "Kitufe cha kuhifadhi mabadiliko"
+  },
+  "cancel": "Ghairi",
+  "@cancel": {
+    "description": "Kitufe cha kughairi kitendo"
+  },
+  "delete": "Futa",
+  "@delete": {
+    "description": "Kitufe cha kufuta kitu"
+  },
+  "edit": "Hariri",
+  "@edit": {
+    "description": "Kitufe cha kuhariri maudhui"
+  },
+  "update": "Sasisha",
+  "@update": {
+    "description": "Kitufe cha kusasisha maudhui au mipangilio"
+  },
+  "submit": "Wasilisha",
+  "@submit": {
+    "description": "Kitufe cha kuwasilisha fomu au data"
+  },
+  "error": "Hitilafu",
+  "@error": {
+    "description": "Ujumbe wa hitilafu unapoonekana tatizo"
+  },
+  "success": "Mafanikio",
+  "@success": {
+    "description": "Ujumbe unaoonyesha mafanikio ya kitendo"
+  },
+  "loading": "Inapakia...",
+  "@loading": {
+    "description": "Ujumbe unaoonyesha kuwa programu inafanya kazi"
+  },
+  "noData": "Hakuna data inayopatikana",
+  "@noData": {
+    "description": "Ujumbe wa kuonyesha kuwa hakuna data inayopatikana"
+  },
+  "retry": "Jaribu tena",
+  "@retry": {
+    "description": "Kitufe cha kujaribu tena endapo kuna hitilafu"
+  },
+  "yes": "Ndio",
+  "@yes": {
+    "description": "Chaguo la kuthibitisha au kukubali"
+  },
+  "no": "Hapana",
+  "@no": {
+    "description": "Chaguo la kukataa au kubatilisha"
+  },
+  "ok": "Sawa",
+  "@ok": {
+    "description": "Kitufe cha kuthibitisha ujumbe au hatua"
+  },
+  "confirm": "Thibitisha",
+  "@confirm": {
+    "description": "Kitufe cha kuthibitisha kitendo"
+  },
+  "next": "Ifuatayo",
+  "@next": {
+    "description": "Kitufe cha kwenda hatua inayofuata"
+  },
+  "previous": "Iliyopita",
+  "@previous": {
+    "description": "Kitufe cha kurudi hatua iliyopita"
+  },
+  "finish": "Maliza",
+  "@finish": {
+    "description": "Kitufe cha kumaliza mchakato"
+  }
+}

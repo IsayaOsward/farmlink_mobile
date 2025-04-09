@@ -1,0 +1,134 @@
+{
+  "locale": "en",
+  "@locale": {
+    "description": "Locale identifier"
+  },
+  "appTitle": "My Application",
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+  "welcomeMessage": "Welcome to My Application",
+  "@welcomeMessage": {
+    "description": "A welcome message displayed to users when they open the app"
+  },
+  "login": "Login",
+  "@login": {
+    "description": "Button label for user login"
+  },
+  "logout": "Logout",
+  "@logout": {
+    "description": "Button label for logging out of the application"
+  },
+  "settings": "Settings",
+  "@settings": {
+    "description": "Label for the settings section"
+  },
+  "language": "Language",
+  "@language": {
+    "description": "Label for selecting a language"
+  },
+  "english": "English",
+  "@english": {
+    "description": "Option for selecting English language"
+  },
+  "spanish": "Spanish",
+  "@spanish": {
+    "description": "Option for selecting Spanish language"
+  },
+  "profile": "Profile",
+  "@profile": {
+    "description": "Label for the user's profile section"
+  },
+  "home": "Home",
+  "@home": {
+    "description": "Label for the home screen"
+  },
+  "about": "About",
+  "@about": {
+    "description": "Label for the about section"
+  },
+  "contact": "Contact",
+  "@contact": {
+    "description": "Label for the contact section"
+  },
+  "help": "Help",
+  "@help": {
+    "description": "Label for the help section"
+  },
+  "search": "Search",
+  "@search": {
+    "description": "Label for search functionality"
+  },
+  "save": "Save",
+  "@save": {
+    "description": "Button label for saving changes"
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Button label for canceling an action"
+  },
+  "delete": "Delete",
+  "@delete": {
+    "description": "Button label for deleting an item"
+  },
+  "edit": "Edit",
+  "@edit": {
+    "description": "Button label for editing an item"
+  },
+  "update": "Update",
+  "@update": {
+    "description": "Button label for updating information"
+  },
+  "submit": "Submit",
+  "@submit": {
+    "description": "Button label for submitting data"
+  },
+  "error": "Error",
+  "@error": {
+    "description": "Label for displaying an error message"
+  },
+  "success": "Success",
+  "@success": {
+    "description": "Label for displaying a success message"
+  },
+  "loading": "Loading...",
+  "@loading": {
+    "description": "Label indicating the application is loading"
+  },
+  "noData": "No data available",
+  "@noData": {
+    "description": "Message displayed when there is no data available"
+  },
+  "retry": "Retry",
+  "@retry": {
+    "description": "Button label for retrying an action"
+  },
+  "yes": "Yes",
+  "@yes": {
+    "description": "Option to confirm an action"
+  },
+  "no": "No",
+  "@no": {
+    "description": "Option to decline an action"
+  },
+  "ok": "OK",
+  "@ok": {
+    "description": "Button label for confirming a message or action"
+  },
+  "confirm": "Confirm",
+  "@confirm": {
+    "description": "Button label for confirming an operation"
+  },
+  "next": "Next",
+  "@next": {
+    "description": "Button label for moving to the next step"
+  },
+  "previous": "Previous",
+  "@previous": {
+    "description": "Button label for returning to the previous step"
+  },
+  "finish": "Finish",
+  "@finish": {
+    "description": "Button label for completing an action or process"
+  }
+}
