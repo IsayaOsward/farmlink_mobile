@@ -11,8 +11,6 @@ import '../../providers/language_provider.dart';
 import '../../repository/session_management.dart';
 import '../../widgets/profile_list_tile.dart';
 
-
-
 class Profile extends StatefulWidget {
   const Profile({super.key});
 
@@ -50,30 +48,25 @@ class _ProfileState extends State<Profile> {
                 subtitle: "Role",
               ),
             buildListTile(
-              icon: HeroIcons.phone,
+              icon: HeroIcons.briefcase,
               iconColor: Theme.of(context).colorScheme.primary,
               title: "${profileProvider.userData?['username']}",
-              subtitle: "Username",
+              subtitle: "Business Name",
+            ),
+            buildListTile(
+              icon: HeroIcons.briefcase,
+              iconColor: Theme.of(context).colorScheme.primary,
+              title: "${profileProvider.userData?['username']}",
+              subtitle: "Product demand",
             ),
             buildListTile(
               icon: HeroIcons.clipboardDocumentCheck,
               iconColor: Theme.of(context).colorScheme.primary,
               title: "Report",
-              subtitle: "View Monitoring Reports",
+              subtitle: "View purchase history",
               trailingIcon: HeroIcons.chevronRight,
               onTap: () {
                 // Navigator.pushNamed(context, FarmLinkRoutes.report);
-              },
-            ),
-
-            buildListTile(
-              icon: HeroIcons.bookOpen,
-              iconColor: Theme.of(context).colorScheme.primary,
-              title: "Regulations",
-              subtitle: "View Monitoring Regulations",
-              trailingIcon: HeroIcons.chevronRight,
-              onTap: () {
-                // Navigator.pushNamed(context, FarmLinkRoutes.regulationScreen);
               },
             ),
             buildListTile(
@@ -83,7 +76,8 @@ class _ProfileState extends State<Profile> {
               subtitle: "Change your current password",
               trailingIcon: HeroIcons.chevronRight,
               onTap: () {
-                Navigator.pushNamed(context, FarmLinkRoutes.changePasswordScreen);
+                Navigator.pushNamed(
+                    context, FarmLinkRoutes.changePasswordScreen);
               },
             ),
             buildListTile2(
@@ -171,7 +165,8 @@ class _ProfileState extends State<Profile> {
                   },
                 );
                 if (confirm == true && context.mounted) {
-                  SessionManagement.clearSession(context).then((_) {
+                  final localStorage = LocalStorage();
+                  localStorage.flushStorage().then((_) {
                     currentPageProvider.changeCurrentPage(0);
                   });
                 }

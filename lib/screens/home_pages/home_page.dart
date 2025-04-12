@@ -230,7 +230,6 @@ class HomePage extends StatelessWidget {
                 ),
 
                 const SizedBox(height: 20),
-
                 // Similar Farms Header
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -1,3 +1,4 @@
+import 'package:farmlink/screens/home_pages/category_items.dart';
 import 'package:flutter/material.dart';
 
 class ProductCategories extends StatelessWidget {
@@ -96,7 +97,14 @@ class ProductCategories extends StatelessWidget {
                 var category = categories[index];
                 return GestureDetector(
                   onTap: () {
-                    // Navigate to category detail page or similar action
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => CategoryItems(
+                          categoryName: category['name'],
+                        ),
+                      ),
+                    );
                   },
                   child: Card(
                     elevation: 5,
@@ -136,7 +144,9 @@ class ProductCategories extends StatelessWidget {
                                 shadows: [
                                   Shadow(
                                     blurRadius: 10.0,
-                                    color: Colors.black.withOpacity(0.7),
+                                    color: Colors.black.withOpacity(
+                                      0.7,
+                                    ),
                                     offset: Offset(0, 0),
                                   ),
                                 ],

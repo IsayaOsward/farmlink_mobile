@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../repository/session_management.dart';
-
 
 
 class AuthProvider extends ChangeNotifier {
@@ -11,7 +7,6 @@ class AuthProvider extends ChangeNotifier {
   bool loginSuccess = false;
   String get loginMessage => _loginMessage;
   Map<String, dynamic>? userData = {};
-
 
   Future<void> login(
       {required String username,
@@ -22,10 +17,8 @@ class AuthProvider extends ChangeNotifier {
       notifyListeners();
     });
     try {
-
-        _loginMessage = "Login Successfully!";
-        loginSuccess = true;
-      
+      _loginMessage = "Login Successfully!";
+      loginSuccess = true;
     } finally {
       await getUserProfile();
       isLoading = false;
@@ -38,8 +31,6 @@ class AuthProvider extends ChangeNotifier {
   Future<void> checkTokenValidity() async {}
 
   Future<void> getUserProfile() async {
-    final profile = await SessionManagement.getUserData();
-    userData = profile;
     notifyListeners();
   }
 

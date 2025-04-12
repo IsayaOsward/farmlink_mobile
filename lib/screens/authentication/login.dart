@@ -1,4 +1,5 @@
 import 'package:farmlink/routes/route_names.dart';
+import 'package:farmlink/screens/dealer/main_screen.dart';
 import 'package:farmlink/screens/home_pages/chat_page.dart';
 import 'package:farmlink/screens/home_pages/main_page.dart';
 import 'package:farmlink/utils/image_assets.dart';
@@ -59,7 +60,6 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _scaleAnimation;
 
-
   @override
   void dispose() {
     _animationController.dispose();
@@ -75,6 +75,11 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
 
   void _navigateToCreateAccount(BuildContext context) {
     Navigator.pushNamed(context, FarmLinkRoutes.registrationScreen);
+  }
+
+  void _navigateToDealer(BuildContext context) {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (_) => DealerMainScreen()));
   }
 
   void _navigateToChatWithAI(BuildContext context) {
@@ -198,11 +203,21 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                           SizedBox(height: screenHeight * 0.02),
                           Center(
                             child: TextButton(
-                              onPressed: () =>
-                                  _navigateToCreateAccount(context),
+                              onPressed: () => _navigateToCreateAccount(
+                                context,
+                              ),
                               child: const Text(
                                 "Don't have an account? Create an account",
                                 style: TextStyle(color: Colors.blue),
+                              ),
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () => _navigateToDealer(context),
+                            child: const Text(
+                              "Dealer",
+                              style: TextStyle(
+                                color: Colors.blue,
                               ),
                             ),
                           ),
