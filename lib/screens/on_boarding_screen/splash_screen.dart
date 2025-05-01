@@ -1,10 +1,11 @@
-import 'package:farmlink/routes/route_names.dart';
 import 'package:flutter/material.dart';
-
 import '../../utils/image_assets.dart';
+import '../../routes/route_names.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+  final void Function() onInitializationComplete;
+
+  const SplashScreen({super.key, required this.onInitializationComplete});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -44,16 +45,29 @@ class _SplashScreenState extends State<SplashScreen>
     );
 
     // Start animations
-    _controller.forward();
+    _controller.forward().then((_) {
+      widget.onInitializationComplete();
+      if (mounted) {
+        Navigator.pushReplacementNamed(
+            context, FarmLinkRoutes.onBoardingScreen);
+      }
+    }).catchError((e) {
+      print('Animation error: $e');
+      widget.onInitializationComplete();
+      if (mounted) {
+        Navigator.pushReplacementNamed(
+            context, FarmLinkRoutes.onBoardingScreen);
+      }
+    });
 
-    _navigateToNextScreen();
-  }
-
-
-   Future<void> _navigateToNextScreen() async {
-    await Future.delayed(const Duration(seconds: 3));
-    Navigator.pushReplacementNamed(context, FarmLinkRoutes.onBoardingScreen);
-
+    // Fallback timeout to ensure navigation
+    Future.delayed(const Duration(seconds: 3), () {
+      if (mounted) {
+        widget.onInitializationComplete();
+        Navigator.pushReplacementNamed(
+            context, FarmLinkRoutes.onBoardingScreen);
+      }
+    });
   }
 
   @override

@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import '../configs/base_url.dart';
-import '../repository/session_management.dart';
+import '../repository/local_storage.dart';
 
 class NetworkService {
   final LocalStorage _storage = LocalStorage();

@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:provider/provider.dart';
 
-import '../../providers/app_theme_provider.dart';
+import '../../providers/utility/app_theme_provider.dart';
 import '../../providers/auth_provider.dart';
-import '../../providers/biometric_provider.dart';
-import '../../providers/current_page_provider.dart';
-import '../../providers/language_provider.dart';
-import '../../repository/session_management.dart';
+import '../../providers/utility/biometric_provider.dart';
+import '../../providers/utility/current_page_provider.dart';
+import '../../providers/utility/language_provider.dart';
+import '../../repository/local_storage.dart';
 import '../../widgets/profile_list_tile.dart';
 
 class Profile extends StatefulWidget {
@@ -31,34 +31,35 @@ class _ProfileState extends State<Profile> {
             buildListTile(
               icon: HeroIcons.user,
               iconColor: Theme.of(context).colorScheme.primary,
-              title: "${profileProvider.userData?['full_name']}",
+              title: profileProvider.userData!.firstName +
+                  profileProvider.userData!.lastName,
               subtitle: "Full name",
             ),
             buildListTile(
               icon: HeroIcons.envelope,
               iconColor: Theme.of(context).colorScheme.primary,
-              title: "${profileProvider.userData?['email']}",
+              title: "${profileProvider.userData?.email}",
               subtitle: "Email address",
             ),
-            if (profileProvider.userData?['is_manager'] ?? false)
-              buildListTile(
-                icon: HeroIcons.briefcase,
-                iconColor: Theme.of(context).colorScheme.primary,
-                title: "Manager",
-                subtitle: "Role",
-              ),
-            buildListTile(
-              icon: HeroIcons.briefcase,
-              iconColor: Theme.of(context).colorScheme.primary,
-              title: "${profileProvider.userData?['username']}",
-              subtitle: "Business Name",
-            ),
-            buildListTile(
-              icon: HeroIcons.briefcase,
-              iconColor: Theme.of(context).colorScheme.primary,
-              title: "${profileProvider.userData?['username']}",
-              subtitle: "Product demand",
-            ),
+            // if (profileProvider.userData?.accountType == "DEALER")
+            //   buildListTile(
+            //     icon: HeroIcons.briefcase,
+            //     iconColor: Theme.of(context).colorScheme.primary,
+            //     title: "Manager",
+            //     subtitle: "Role",
+            //   ),
+            // buildListTile(
+            //   icon: HeroIcons.briefcase,
+            //   iconColor: Theme.of(context).colorScheme.primary,
+            //   title: "${profileProvider.userData?['username']}",
+            //   subtitle: "Business Name",
+            // ),
+            // buildListTile(
+            //   icon: HeroIcons.briefcase,
+            //   iconColor: Theme.of(context).colorScheme.primary,
+            //   title: "${profileProvider.userData?['username']}",
+            //   subtitle: "Product demand",
+            // ),
             buildListTile(
               icon: HeroIcons.clipboardDocumentCheck,
               iconColor: Theme.of(context).colorScheme.primary,

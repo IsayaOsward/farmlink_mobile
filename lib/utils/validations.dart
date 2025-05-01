@@ -82,14 +82,14 @@ class Validator {
   }
 
   // Name validation (no null, no numbers, no special characters)
-  static String? validateName(String? name, BuildContext context) {
-    if (name == null || name.isEmpty) {
+  static String? validateName(String? value, BuildContext context) {
+    if (value == null || value.isEmpty) {
       return "This field is required";
     }
     // Name should only contain alphabets and spaces (no numbers or special characters)
     String namePattern = r'^[a-zA-Z ]+$';
     RegExp regex = RegExp(namePattern);
-    if (!regex.hasMatch(name)) {
+    if (!regex.hasMatch(value)) {
       return "Invalid input";
     }
     return null;
@@ -111,6 +111,31 @@ class Validator {
     }
 
     return null;
+  }
+
+  static String? validateAndFormatPhoneNumberV2(String? phoneNumber) {
+    if (phoneNumber == null || phoneNumber.trim().isEmpty) {
+      return 'Phone number cannot be empty';
+    }
+
+    final trimmed = phoneNumber.trim();
+
+    // Local format (e.g., 07XXXXXXXX)
+    if (trimmed.startsWith('0') && trimmed.length == 10) {
+      return null; // Considered valid, will be formatted before submission
+    }
+
+    // International format (e.g., 2557XXXXXXXX)
+    if (trimmed.startsWith('255') && trimmed.length == 12) {
+      return null; // Valid as-is
+    }
+
+    // Optional: Allow +255 format, will strip "+" before formatting
+    if (trimmed.startsWith('+255') && trimmed.length == 13) {
+      return null;
+    }
+
+    return 'Enter a valid phone number starting with 0 or 255';
   }
 
   static String? validateInternationalPhoneNumber(
@@ -139,20 +164,29 @@ class Validator {
     return null; // Validation passed
   }
 
-  static String? validateAndFormatPhoneNumber(String phoneNumber) {
-    if (phoneNumber.startsWith('0')) {
-      // Remove the leading zero and replace it with '255'
-      return '255${phoneNumber.substring(1)}';
-    } else if (phoneNumber.startsWith('255')) {
-      // Leave as it is
-      return phoneNumber;
-    } else if (phoneNumber.startsWith('+')) {
-      // Remove the leading '+'
-      return phoneNumber.substring(1);
-    } else {
-      // Return the original if no conditions are met
-      return phoneNumber;
+  static String? validateAndFormatPhoneNumber(String? phoneNumber) {
+    if (phoneNumber == null || phoneNumber.trim().isEmpty) {
+      return 'Phone number cannot be empty';
     }
+
+    final trimmed = phoneNumber.trim();
+
+    // Local format (e.g., 07XXXXXXXX)
+    if (trimmed.startsWith('0') && trimmed.length == 10) {
+      return null; // Considered valid, will be formatted before submission
+    }
+
+    // International format (e.g., 2557XXXXXXXX)
+    if (trimmed.startsWith('255') && trimmed.length == 12) {
+      return null; // Valid as-is
+    }
+
+    // Optional: Allow +255 format, will strip "+" before formatting
+    if (trimmed.startsWith('+255') && trimmed.length == 13) {
+      return null;
+    }
+
+    return 'Enter a valid phone number starting with 0 or 255';
   }
 
   // Number validation (ensure it's only digits, no strings)
@@ -259,5 +293,24 @@ class Validator {
     }
 
     return null; // If all checks pass, return null (no error)
+  }
+
+  static String? validateDropDownInput(String? value, BuildContext context) {
+    if (value == null) {
+      return "Please select one of the options provided";
+    }
+    return null;
+  }
+}
+
+
+String formatPhoneNumber(String rawNumber) {
+  final trimmed = rawNumber.trim();
+  if (trimmed.startsWith('0') && trimmed.length == 10) {
+    return '255${trimmed.substring(1)}';
+  } else if (trimmed.startsWith('+255') && trimmed.length == 13) {
+    return trimmed.substring(1); // Remove the '+'
+  } else {
+    return trimmed; // Assume it's already in 255XXXXXXXXX format
   }
 }

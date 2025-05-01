@@ -1,0 +1,1 @@
+/home/isayaosward/projects/personal/mobile/farmlink_mobile/build/app/intermediates/cxx/Debug/3pt4y5y5/obj/arm64-v8a

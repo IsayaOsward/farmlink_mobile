@@ -45,5 +45,20 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<!-- THIS IS FOR LISTENING ACTIVATION LINKS FROM EMAIL -->
+	<key>CFBundleURLTypes</key>
+	<array>
+	<dict>
+		<key>CFBundleTypeRole</key>
+		<string>Editor</string>
+		<key>CFBundleURLName</key>
+		<string>com.farmlink.app.farmlink</string>
+		<key>CFBundleURLSchemes</key>
+		<array>
+		<string>FarmlinkApp</string>
+		</array>
+	</dict>
+	</array>
+
 </dict>
 </plist>

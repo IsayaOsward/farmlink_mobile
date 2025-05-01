@@ -1,13 +1,16 @@
+import 'package:farmlink/providers/auth_provider.dart';
+import 'package:farmlink/repository/local_storage.dart';
 import 'package:farmlink/screens/home_pages/home_page.dart';
 import 'package:farmlink/screens/home_pages/product_categories.dart';
 import 'package:farmlink/screens/home_pages/product_list.dart';
 import 'package:farmlink/screens/home_pages/profile.dart';
+import 'package:farmlink/utils/greeting.dart';
 import 'package:farmlink/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:provider/provider.dart';
 
-import '../../providers/bottom_navigation_provider.dart';
+import '../../providers/utility/bottom_navigation_provider.dart';
 
 class MainScreen extends StatelessWidget {
   MainScreen({super.key});
@@ -17,15 +20,17 @@ class MainScreen extends StatelessWidget {
     ProductList(),
     Profile()
   ];
+  final localStorage = LocalStorage();
   @override
   Widget build(BuildContext context) {
-    return Consumer<BottomNavigationProvider>(
-        builder: (context, currentPage, child) {
+    return Consumer2<BottomNavigationProvider, AuthProvider>(
+        builder: (context, currentPage, authProvider, child) {
       return Scaffold(
         appBar: CustomAppBar(
           leadingIcon: HeroIcon(HeroIcons.userCircle),
           title: "Welcome",
-          subTitle: "Username",
+          subTitle:
+              "${GreetingUtil.getGreeting()} ${authProvider.userData!.firstName}",
           actionButtons: [
             IconButton(
               onPressed: () {},

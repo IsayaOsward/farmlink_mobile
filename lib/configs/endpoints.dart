@@ -1,6 +1,7 @@
 // AUTH ENDPOINTS
-const String login = '/auth/login/';
-const String logout = '/auth/logout/';
+// const String loginUrl = '/oauth2/access_token';
+const String getProfileUrl = '/auth/profile/';
+const String registerUrl = '/auth/register/';
 const String getRefreshToken = '/auth/token/refresh/';
 const String verifyAccessToken = '/auth/token/verify/';
 const String changePassword = '/auth/password/change/';
