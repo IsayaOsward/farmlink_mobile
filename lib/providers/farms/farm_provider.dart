@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:farmlink/graphql/queries/farm_queries.dart';
 import 'package:farmlink/models/farm_model.dart';

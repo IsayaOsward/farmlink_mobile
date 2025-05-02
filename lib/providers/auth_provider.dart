@@ -15,6 +15,7 @@ import '../routes/route_names.dart';
 import '../services/graphql_operation.dart';
 import '../services/graphql_service_call.dart';
 import '../widgets/toasts.dart';
+import 'categories/category_provider.dart';
 import 'farms/farm_provider.dart';
 
 class AuthProvider extends ChangeNotifier {
@@ -60,7 +61,6 @@ class AuthProvider extends ChangeNotifier {
           final profileResult = await graphQLService.performGraphQLOperation(
               operationString: getUserProfileString,
               operationType: OperationType.query,
-              // wrapInDataKey: true,
               responseKey: "getUserProfileAndRoles",
               fromJson: UserProfileResponse.fromJson);
 
@@ -69,8 +69,15 @@ class AuthProvider extends ChangeNotifier {
 
             final farmProvider =
                 Provider.of<FarmProvider>(context, listen: false);
+            final categoryProvider =
+                Provider.of<CategoryProvider>(context, listen: false);
+            log("===============CALLING FARMS========================");
+
             await farmProvider.fetchFarms();
             await farmProvider.fetchFarms(isMine: true);
+
+            log("===============CALLING CATEGORY========================");
+            await categoryProvider.fetchAllCategories();
           }
           loginSuccess = true;
         } else {

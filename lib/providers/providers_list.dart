@@ -3,6 +3,7 @@ import 'package:farmlink/providers/utility/biometric_provider.dart';
 import 'package:farmlink/providers/utility/current_page_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'categories/category_provider.dart';
 import 'farms/farm_provider.dart';
 import 'utility/bottom_navigation_provider.dart';
 import 'utility/language_provider.dart';
@@ -25,6 +26,7 @@ Widget multiProvider({required Widget child}) {
       _createProvider(() => CurrentPageProvider()),
       _createProvider(() => BiometricProvider()),
       _createProvider(() => FarmProvider()),
+      _createProvider(() => CategoryProvider()),
     ],
     child: child,
   );

@@ -1,5 +1,9 @@
+import 'package:farmlink/configs/base_url.dart';
 import 'package:farmlink/screens/home_pages/category_items.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../providers/categories/category_provider.dart';
 
 class ProductCategories extends StatelessWidget {
   ProductCategories({super.key});
@@ -42,126 +46,130 @@ class ProductCategories extends StatelessWidget {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Agricultural Product Categories",
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.green.shade700,
-                  ),
-                ),
-                Expanded(
-                  child: IconButton(
-                    icon: Icon(
-                      Icons.filter_list,
+        child: Consumer<CategoryProvider>(
+            builder: (context, categoryProvider, child) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Agricultural Product Categories",
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
                       color: Colors.green.shade700,
                     ),
-                    onPressed: () {
-                      // Filter button action
-                    },
                   ),
-                ),
-              ],
-            ),
-            SizedBox(height: 10),
-            // Search Bar
-            TextField(
-              decoration: InputDecoration(
-                labelText: "Search Categories",
-                prefixIcon: Icon(Icons.search),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                filled: true,
-                fillColor: Colors.grey.shade100,
+                  Expanded(
+                    child: IconButton(
+                      icon: Icon(
+                        Icons.filter_list,
+                        color: Colors.green.shade700,
+                      ),
+                      onPressed: () {
+                        // Filter button action
+                      },
+                    ),
+                  ),
+                ],
               ),
-            ),
-            SizedBox(height: 20),
-            // Category Grid
-            GridView.builder(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 16,
-                mainAxisSpacing: 16,
+              SizedBox(height: 10),
+              // Search Bar
+              TextField(
+                decoration: InputDecoration(
+                  labelText: "Search Categories",
+                  prefixIcon: Icon(Icons.search),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  filled: true,
+                  fillColor: Colors.grey.shade100,
+                ),
               ),
-              itemCount: categories.length,
-              itemBuilder: (context, index) {
-                var category = categories[index];
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => CategoryItems(
-                          categoryName: category['name'],
+              SizedBox(height: 20),
+              // Category Grid
+              GridView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 16,
+                  mainAxisSpacing: 16,
+                ),
+                itemCount: categoryProvider.allFarmsResponseData.data.length,
+                itemBuilder: (context, index) {
+                  var category =
+                      categoryProvider.allFarmsResponseData.data[index];
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => CategoryItems(
+                            categoryName: category.name,
+                          ),
+                        ),
+                      );
+                    },
+                    child: Card(
+                      elevation: 5,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: Stack(
+                          fit: StackFit.expand,
+                          children: [
+                            // Category image
+                            Image.network(
+                              "$baseUrl/media${category.media.mediaPath}",
+                              fit: BoxFit.cover,
+                            ),
+                            // Category overlay and title
+                            Container(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Colors.black.withOpacity(0.5),
+                                    Colors.black.withOpacity(0.3),
+                                  ],
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                ),
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              alignment: Alignment.center,
+                              child: Text(
+                                category.name,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  shadows: [
+                                    Shadow(
+                                      blurRadius: 10.0,
+                                      color: Colors.black.withOpacity(
+                                        0.7,
+                                      ),
+                                      offset: Offset(0, 0),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    );
-                  },
-                  child: Card(
-                    elevation: 5,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
                     ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(15),
-                      child: Stack(
-                        fit: StackFit.expand,
-                        children: [
-                          // Category image
-                          Image.network(
-                            category['image'],
-                            fit: BoxFit.cover,
-                          ),
-                          // Category overlay and title
-                          Container(
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  Colors.black.withOpacity(0.5),
-                                  Colors.black.withOpacity(0.3),
-                                ],
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                              ),
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            alignment: Alignment.center,
-                            child: Text(
-                              category['name'],
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                shadows: [
-                                  Shadow(
-                                    blurRadius: 10.0,
-                                    color: Colors.black.withOpacity(
-                                      0.7,
-                                    ),
-                                    offset: Offset(0, 0),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
-          ],
-        ),
+                  );
+                },
+              ),
+            ],
+          );
+        }),
       ),
     );
   }
