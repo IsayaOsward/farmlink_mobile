@@ -1,46 +1,15 @@
-import 'package:farmlink/configs/base_url.dart';
-import 'package:farmlink/screens/home_pages/category_items.dart';
+import 'package:farmlink/screens/home_pages/list_categories.dart';
+import 'package:farmlink/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
+import 'package:heroicons/heroicons.dart';
 import 'package:provider/provider.dart';
 
+import '../../configs/base_url.dart';
 import '../../providers/categories/category_provider.dart';
+import 'category_items.dart';
 
 class ProductCategories extends StatelessWidget {
-  ProductCategories({super.key});
-  // Mock data for agricultural categories (replace with real data from your API or database)
-  final List<Map<String, dynamic>> categories = [
-    {
-      'name': 'Seeds',
-      'image':
-          'https://img.freepik.com/free-photo/sunny-meadow-landscape_1112-134.jpg',
-    },
-    {
-      'name': 'Fertilizers',
-      'image':
-          'https://img.freepik.com/free-photo/beautiful-shot-cornfield-with-blue-sky_181624-20783.jpg',
-    },
-    {
-      'name': 'Farm Tools',
-      'image':
-          'https://img.freepik.com/free-photo/so-many-vegetables-this-field_181624-18619.jpg',
-    },
-    {
-      'name': 'Irrigation Equipment',
-      'image':
-          'https://img.freepik.com/free-photo/sunny-meadow-landscape_1112-134.jpg',
-    },
-    {
-      'name': 'Pesticides',
-      'image':
-          'https://img.freepik.com/free-photo/beautiful-shot-cornfield-with-blue-sky_181624-20783.jpg',
-    },
-    {
-      'name': 'Plants & Saplings',
-      'image':
-          'https://img.freepik.com/free-photo/so-many-vegetables-this-field_181624-18619.jpg',
-    },
-  ];
-
+  const ProductCategories({super.key});
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -49,46 +18,30 @@ class ProductCategories extends StatelessWidget {
         child: Consumer<CategoryProvider>(
             builder: (context, categoryProvider, child) {
           return Column(
+            spacing: 20,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              CustomTextFormField(
+                label: "Search categories",
+                prefix: HeroIcon(
+                  HeroIcons.magnifyingGlass,
+                ),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Agricultural Product Categories",
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.green.shade700,
-                    ),
+                    "Agriculture categories",
                   ),
-                  Expanded(
-                    child: IconButton(
-                      icon: Icon(
-                        Icons.filter_list,
-                        color: Colors.green.shade700,
-                      ),
-                      onPressed: () {
-                        // Filter button action
-                      },
+                  GestureDetector(
+                    onTap: () => Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => ListCategories())),
+                    child: Text(
+                      "View All",
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 10),
-              // Search Bar
-              TextField(
-                decoration: InputDecoration(
-                  labelText: "Search Categories",
-                  prefixIcon: Icon(Icons.search),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  filled: true,
-                  fillColor: Colors.grey.shade100,
-                ),
-              ),
-              SizedBox(height: 20),
               // Category Grid
               GridView.builder(
                 shrinkWrap: true,
@@ -98,10 +51,10 @@ class ProductCategories extends StatelessWidget {
                   crossAxisSpacing: 16,
                   mainAxisSpacing: 16,
                 ),
-                itemCount: categoryProvider.allFarmsResponseData.data.length,
+                itemCount: categoryProvider.allCategoryResponseData.data.length,
                 itemBuilder: (context, index) {
                   var category =
-                      categoryProvider.allFarmsResponseData.data[index];
+                      categoryProvider.allCategoryResponseData.data[index];
                   return GestureDetector(
                     onTap: () {
                       Navigator.push(
@@ -133,8 +86,8 @@ class ProductCategories extends StatelessWidget {
                               decoration: BoxDecoration(
                                 gradient: LinearGradient(
                                   colors: [
-                                    Colors.black.withOpacity(0.5),
-                                    Colors.black.withOpacity(0.3),
+                                    Colors.black.withAlpha(80),
+                                    Colors.black.withAlpha(90),
                                   ],
                                   begin: Alignment.topCenter,
                                   end: Alignment.bottomCenter,
@@ -151,8 +104,8 @@ class ProductCategories extends StatelessWidget {
                                   shadows: [
                                     Shadow(
                                       blurRadius: 10.0,
-                                      color: Colors.black.withOpacity(
-                                        0.7,
+                                      color: Colors.black.withAlpha(
+                                        120,
                                       ),
                                       offset: Offset(0, 0),
                                     ),

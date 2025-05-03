@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'categories/category_provider.dart';
 import 'farms/farm_provider.dart';
+import 'products/products_provider.dart';
 import 'utility/bottom_navigation_provider.dart';
 import 'utility/language_provider.dart';
 import 'utility/app_theme_provider.dart';
@@ -27,6 +28,7 @@ Widget multiProvider({required Widget child}) {
       _createProvider(() => BiometricProvider()),
       _createProvider(() => FarmProvider()),
       _createProvider(() => CategoryProvider()),
+      _createProvider(() => ProductsProvider()),
     ],
     child: child,
   );

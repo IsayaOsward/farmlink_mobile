@@ -26,6 +26,7 @@ class MainScreen extends StatelessWidget {
     return Consumer2<BottomNavigationProvider, AuthProvider>(
         builder: (context, currentPage, authProvider, child) {
       return Scaffold(
+        backgroundColor: Colors.white,
         appBar: CustomAppBar(
           leadingIcon: HeroIcon(HeroIcons.userCircle),
           title: "Welcome",
@@ -71,10 +72,6 @@ class MainScreen extends StatelessWidget {
               ),
             ],
           ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          child: HeroIcon(HeroIcons.plus),
         ),
       );
     });

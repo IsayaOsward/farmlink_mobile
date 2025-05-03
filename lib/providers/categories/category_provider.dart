@@ -10,7 +10,8 @@ class CategoryProvider extends ChangeNotifier {
 
   GetAllCategoryResponse _allCategoryResponseData =
       GetAllCategoryResponse.error();
-  GetAllCategoryResponse get allFarmsResponseData => _allCategoryResponseData;
+  GetAllCategoryResponse get allCategoryResponseData =>
+      _allCategoryResponseData;
 
   Future fetchAllCategories() async {
     try {
@@ -35,4 +36,6 @@ class CategoryProvider extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+  udpateCategory() {}
 }

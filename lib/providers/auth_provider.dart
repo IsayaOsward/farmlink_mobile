@@ -17,6 +17,7 @@ import '../services/graphql_service_call.dart';
 import '../widgets/toasts.dart';
 import 'categories/category_provider.dart';
 import 'farms/farm_provider.dart';
+import 'products/products_provider.dart';
 
 class AuthProvider extends ChangeNotifier {
   final graphQLService = GraphQLCallService();
@@ -71,13 +72,16 @@ class AuthProvider extends ChangeNotifier {
                 Provider.of<FarmProvider>(context, listen: false);
             final categoryProvider =
                 Provider.of<CategoryProvider>(context, listen: false);
+            final productProvider =
+                Provider.of<ProductsProvider>(context, listen: false);
             log("===============CALLING FARMS========================");
 
             await farmProvider.fetchFarms();
             await farmProvider.fetchFarms(isMine: true);
 
-            log("===============CALLING CATEGORY========================");
             await categoryProvider.fetchAllCategories();
+            log("===============CALLING PRODUCTS========================");
+            await productProvider.fetchProducts();
           }
           loginSuccess = true;
         } else {

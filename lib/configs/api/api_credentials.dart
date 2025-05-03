@@ -8,3 +8,4 @@ const sessionTimeOut = 900000;
 const apiCallTimeOut = 30;
 final String loginUrls = '$baseUrl/oauth2/access_token';
 final gqlServerUrl = '$baseUrl/graphql';
+final mediaUrl = '$baseUrl/media';

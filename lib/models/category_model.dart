@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'defaults/default_page_model.dart';
 import 'defaults/default_response_model.dart';
 
@@ -15,7 +13,6 @@ class GetAllCategoryResponse {
   });
 
   factory GetAllCategoryResponse.fromJson(Map<String, dynamic> json) {
-    log("===========$json==========");
     return GetAllCategoryResponse(
       response: DefaultResponseModel.fromJson(json['response']),
       page: PageObject.fromJson(json['page']),
