@@ -7,6 +7,15 @@ const String defaultResponseObjectString = '''
     }
 ''';
 
+const String defaultBodyResponseObject = '''
+  data {
+        id
+        uniqueId
+        name
+        code
+      }
+''';
+
 const String defaultPageObjectString = '''
   page {
     number

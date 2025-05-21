@@ -1,4 +1,3 @@
-
 import 'graphql_operation.dart';
 
 class GraphQLCallService {
@@ -11,7 +10,7 @@ class GraphQLCallService {
     bool wrapInDataKey = false,
   }) async {
     try {
-      final result = await GraphQLServiceOperation.executeOperation(
+      final result = await GraphQLOperation.executeOperation(
         operationString,
         operationType,
         variables: variables,

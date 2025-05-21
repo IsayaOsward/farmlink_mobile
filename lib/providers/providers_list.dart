@@ -7,8 +7,10 @@ import 'categories/category_provider.dart';
 import 'farms/farm_provider.dart';
 import 'products/products_provider.dart';
 import 'utility/bottom_navigation_provider.dart';
+import 'utility/image_picker_provider.dart';
 import 'utility/language_provider.dart';
 import 'utility/app_theme_provider.dart';
+import 'utility/location_provider.dart';
 
 // Helper function to create a ChangeNotifierProvider from a class type
 ChangeNotifierProvider<T> _createProvider<T extends ChangeNotifier>(
@@ -29,6 +31,8 @@ Widget multiProvider({required Widget child}) {
       _createProvider(() => FarmProvider()),
       _createProvider(() => CategoryProvider()),
       _createProvider(() => ProductsProvider()),
+      _createProvider(() => LocationProvider()),
+      _createProvider(() => ImagePickerProvider()),
     ],
     child: child,
   );

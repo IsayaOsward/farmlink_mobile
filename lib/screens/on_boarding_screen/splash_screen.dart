@@ -52,7 +52,6 @@ class _SplashScreenState extends State<SplashScreen>
             context, FarmLinkRoutes.onBoardingScreen);
       }
     }).catchError((e) {
-      print('Animation error: $e');
       widget.onInitializationComplete();
       if (mounted) {
         Navigator.pushReplacementNamed(
@@ -61,13 +60,16 @@ class _SplashScreenState extends State<SplashScreen>
     });
 
     // Fallback timeout to ensure navigation
-    Future.delayed(const Duration(seconds: 3), () {
-      if (mounted) {
-        widget.onInitializationComplete();
-        Navigator.pushReplacementNamed(
-            context, FarmLinkRoutes.onBoardingScreen);
-      }
-    });
+    Future.delayed(
+      const Duration(seconds: 3),
+      () {
+        if (mounted) {
+          widget.onInitializationComplete();
+          Navigator.pushReplacementNamed(
+              context, FarmLinkRoutes.onBoardingScreen);
+        }
+      },
+    );
   }
 
   @override
@@ -79,7 +81,7 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green[50], // Light green background
+      backgroundColor: Colors.green[50],
       body: Center(
         child: FadeTransition(
           opacity: _fadeAnimation,
@@ -88,14 +90,12 @@ class _SplashScreenState extends State<SplashScreen>
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // App Logo
                 Image.asset(
                   ImageAssets.logo,
                   width: 150,
                   height: 150,
                 ),
                 const SizedBox(height: 20),
-                // App Name
                 Text(
                   'SMART',
                   style: Theme.of(context).textTheme.headlineLarge?.copyWith(

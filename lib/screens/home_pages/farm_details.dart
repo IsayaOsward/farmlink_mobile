@@ -1,31 +1,15 @@
+import 'package:farmlink/models/farm_model.dart';
 import 'package:flutter/material.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class FarmDetailPage extends StatelessWidget {
-  final String farmName;
-  final String mainCrop;
-  final String region;
-  final String district;
-  final String ward;
-  final String street;
-  final String productionPeriod;
-  final String farmerName;
-  final String phone;
-  final String email;
-
+  final Farm farm;
+  final bool isMine;
   const FarmDetailPage({
     super.key,
-    required this.farmName,
-    required this.mainCrop,
-    required this.region,
-    required this.district,
-    required this.ward,
-    required this.street,
-    required this.productionPeriod,
-    required this.farmerName,
-    required this.phone,
-    required this.email,
+    required this.isMine,
+    required this.farm,
   });
 
   void _launchPhone(String phone) async {
@@ -58,8 +42,19 @@ class FarmDetailPage extends StatelessWidget {
             HeroIcons.arrowLeft,
           ),
         ),
+        actions: [
+          isMine
+              ? IconButton(
+                  onPressed: () {},
+                  icon: HeroIcon(
+                    HeroIcons.pencilSquare,
+                    color: Colors.white,
+                  ),
+                )
+              : SizedBox.shrink()
+        ],
         title: Text(
-          farmName,
+          farm.name,
           style: TextStyle(
             color: Colors.white,
           ),
@@ -71,11 +66,11 @@ class FarmDetailPage extends StatelessWidget {
         child: ListView(
           children: [
             Text(
-              'Main Crop: $mainCrop',
+              'Main Crop:',
               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
-            Text('Production Period: $productionPeriod'),
+            Text('Production Period: '),
             const SizedBox(height: 16),
             const Text(
               'Other Grown Crops',
@@ -142,10 +137,10 @@ class FarmDetailPage extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   color: Colors.green),
             ),
-            Text('Region: $region'),
-            Text('District: $district'),
-            Text('Ward: $ward'),
-            Text('Street: $street'),
+            Text('Region:'),
+            Text('District: '),
+            Text('Ward: '),
+            Text('Street: '),
             const SizedBox(height: 16),
             const Text(
               'Farmer Contact Info',
@@ -155,18 +150,18 @@ class FarmDetailPage extends StatelessWidget {
                   color: Colors.green),
             ),
             const SizedBox(height: 8),
-            Text('Name: $farmerName'),
+            Text('Name: '),
             GestureDetector(
-              onTap: () => _launchPhone(phone),
+              // onTap: () => _launchPhone(phone),
               child: Text(
-                'Phone: $phone',
+                'Phone:',
                 style: const TextStyle(color: Colors.green),
               ),
             ),
             GestureDetector(
-              onTap: () => _launchEmail(email),
+              // onTap: () => _launchEmail(email),
               child: Text(
-                'Email: $email',
+                'Email: ',
                 style: const TextStyle(color: Colors.green),
               ),
             ),

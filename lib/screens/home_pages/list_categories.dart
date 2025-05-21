@@ -1,8 +1,9 @@
-import 'package:farmlink/configs/api/api_credentials.dart';
-import 'package:farmlink/providers/categories/category_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:provider/provider.dart';
+
+import '../../configs/api/api_credentials.dart';
+import '../../providers/categories/category_provider.dart';
 
 class ListCategories extends StatelessWidget {
   const ListCategories({super.key});
@@ -48,10 +49,8 @@ class ListCategories extends StatelessWidget {
                   icon: const HeroIcon(HeroIcons.ellipsisVertical),
                   onSelected: (String result) async {
                     if (result == 'edit') {
-                      // await categoryProvider.udpateCategory(u);
                     } else if (result == 'delete') {
-                      // Implement delete functionality
-                      // For example: categoryProvider.deleteCategory(category.id);
+
                     }
                   },
                   itemBuilder: (BuildContext context) =>

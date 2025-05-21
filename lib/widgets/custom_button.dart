@@ -9,7 +9,7 @@ class CustomButton extends StatelessWidget {
     super.key,
     required this.buttonText,
     required this.onPressed,
-    this.isTextButton = false, // Defaults to ElevatedButton mode
+    this.isTextButton = false,
   });
 
   @override

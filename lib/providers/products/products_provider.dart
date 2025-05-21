@@ -10,13 +10,31 @@ class ProductsProvider extends ChangeNotifier {
       GetAllProductsResponse.error();
   GetAllProductsResponse get productsResponse => _getAllProductsResponse;
 
+  GetAllProductsResponse _filteredProductsResponse =
+      GetAllProductsResponse.error();
+  GetAllProductsResponse get filteredProductsResponse =>
+      _filteredProductsResponse;
+
   final graphqlLservice = GraphQLCallService();
 
-  Future<void> fetchProducts() async {
+  Future<void> fetchProducts(
+      {Map<String, dynamic>? additionalVariables}) async {
+    final Map<String, dynamic> filtering = {
+      "pageNumber": 1,
+    };
+
+    bool isFiltered = false;
+
+    if (additionalVariables != null &&
+        additionalVariables['filtering'] != null) {
+      final additionalFiltering =
+          additionalVariables['filtering'] as Map<String, dynamic>;
+      filtering.addAll(additionalFiltering);
+      isFiltered = true;
+    }
+
     final variables = {
-      "filtering": {
-        "pageNumber": 1,
-      }
+      "filtering": filtering,
     };
 
     final result = await graphqlLservice.performGraphQLOperation(
@@ -28,7 +46,11 @@ class ProductsProvider extends ChangeNotifier {
     );
 
     if (result!.response.status) {
-      _getAllProductsResponse = result;
+      if (isFiltered) {
+        _filteredProductsResponse = result;
+      } else {
+        _getAllProductsResponse = result;
+      }
     }
 
     notifyListeners();

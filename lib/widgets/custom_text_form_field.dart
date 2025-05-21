@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/utility/image_picker_provider.dart';
 
 class CustomTextFormField extends StatelessWidget {
   final String label;
@@ -10,6 +13,7 @@ class CustomTextFormField extends StatelessWidget {
   final bool? obscureText;
   final FormFieldValidator<String>? validator;
   final TextInputType? keyBoardType;
+  final bool isImagePicker;
   final TextEditingController? controller;
 
   // Dropdown-specific
@@ -30,6 +34,7 @@ class CustomTextFormField extends StatelessWidget {
     this.obscureText,
     this.isDropDown = false,
     this.dropdownItems,
+    this.isImagePicker = false,
   });
 
   @override
@@ -44,9 +49,10 @@ class CustomTextFormField extends StatelessWidget {
       suffixIcon: sufix,
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(20),
+        borderSide: BorderSide(color: colorScheme.primary),
       ),
       focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(width: 2),
+        borderSide: BorderSide(width: 2, color: colorScheme.primary),
         borderRadius: BorderRadius.circular(20),
       ),
       focusedErrorBorder: OutlineInputBorder(
@@ -70,6 +76,34 @@ class CustomTextFormField extends StatelessWidget {
         },
         validator: validator,
         decoration: inputDecoration,
+      );
+    }
+
+    if (isImagePicker) {
+      return Consumer<ImagePickerProvider>(
+        builder: (context, imageProvider, _) {
+          return GestureDetector(
+            onTap: () async {
+              await imageProvider.pickImage();
+              controller?.text = imageProvider.base64Image ?? '';
+            },
+            child: AbsorbPointer(
+              child: TextFormField(
+                controller: controller,
+                maxLines: 1,
+                validator: validator,
+                obscuringCharacter: '*',
+                onTapOutside: (_) => FocusScope.of(context).unfocus(),
+                cursorColor: colorScheme.primary,
+                decoration: inputDecoration.copyWith(
+                  hintText: imageProvider.base64Image != null
+                      ? "Image Selected"
+                      : hint,
+                ),
+              ),
+            ),
+          );
+        },
       );
     }
 

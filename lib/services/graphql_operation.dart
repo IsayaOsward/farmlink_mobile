@@ -5,7 +5,7 @@ import '../configs/api/graphql_config_url.dart';
 
 enum OperationType { query, mutation }
 
-class GraphQLServiceOperation {
+class GraphQLOperation {
   static Future<QueryResult> executeOperation(
     String operationString,
     OperationType type, {

@@ -8,66 +8,7 @@ import 'farm_details.dart';
 import 'similar_farms_page.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({super.key});
-
-  final List<Map<String, String>> items = [
-    {
-      'image':
-          'https://img.freepik.com/free-photo/sunny-meadow-landscape_1112-134.jpg',
-      'farmName': 'Green Valley Farm',
-      'mainCrop': 'Tomatoes',
-      'region': 'Arusha',
-      'district': 'Arusha City',
-      'ward': 'Ilboru',
-      'street': 'Old Moshi Rd',
-      'productionPeriod': 'March - August',
-      'farmerName': 'John Mollel',
-      'phone': '+255712345678',
-      'email': 'john.mollel@example.com',
-    },
-    {
-      'image':
-          'https://img.freepik.com/free-photo/beautiful-shot-cornfield-with-blue-sky_181624-20783.jpg',
-      'farmName': 'Hillside Avocados',
-      'mainCrop': 'Avocados',
-      'region': 'Kilimanjaro',
-      'district': 'Moshi',
-      'ward': 'Majengo',
-      'street': 'Kibo Street',
-      'productionPeriod': 'January - May',
-      'farmerName': 'Maria Lema',
-      'phone': '+255713456789',
-      'email': 'maria.lema@example.com',
-    },
-    {
-      'image':
-          'https://img.freepik.com/free-photo/so-many-vegetables-this-field_181624-18619.jpg',
-      'farmName': 'Red Gold Farm',
-      'mainCrop': 'Onions',
-      'region': 'Dodoma',
-      'district': 'Dodoma Urban',
-      'ward': 'Kikuyu North',
-      'street': 'Mlimani Road',
-      'productionPeriod': 'April - September',
-      'farmerName': 'Frank Mwinuka',
-      'phone': '+255714567890',
-      'email': 'frank.mwinuka@example.com',
-    },
-    {
-      'image':
-          'https://img.freepik.com/free-photo/farm-worker-happy-see-non-gmo-vegetable-plantation-crop-yields_482257-64599.jpg',
-      'farmName': 'Organic Roots',
-      'mainCrop': 'Carrots',
-      'region': 'Morogoro',
-      'district': 'Morogoro Urban',
-      'ward': 'Kihonda',
-      'street': 'Tanesco Street',
-      'productionPeriod': 'February - July',
-      'farmerName': 'Asha Ndunguru',
-      'phone': '+255715678901',
-      'email': 'asha.ndunguru@example.com',
-    },
-  ];
+  const HomePage({super.key});
 
   final List<Map<String, String>> similarFarms = const [
     {
@@ -143,7 +84,7 @@ class HomePage extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (_) => AllFarmsPage(farms: items),
+                                builder: (_) => AllFarmsPage(),
                               ),
                             );
                           },
@@ -169,23 +110,14 @@ class HomePage extends StatelessWidget {
                     itemBuilder: (context, index) {
                       final data = farmProvider
                           .userSpecificFarmsResponseData.data[index];
-                      final item = items[index];
                       return GestureDetector(
                         onTap: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (_) => FarmDetailPage(
-                                farmName: item['farmName']!,
-                                mainCrop: item['mainCrop']!,
-                                region: item['region']!,
-                                district: item['district']!,
-                                ward: item['ward']!,
-                                street: item['street']!,
-                                productionPeriod: item['productionPeriod']!,
-                                farmerName: item['farmerName']!,
-                                phone: item['phone']!,
-                                email: item['email']!,
+                                isMine: true,
+                                farm: data,
                               ),
                             ),
                           );
@@ -280,16 +212,8 @@ class HomePage extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                               builder: (_) => FarmDetailPage(
-                                farmName: farm['farmName']!,
-                                mainCrop: farm['mainCrop']!,
-                                region: farm['region']!,
-                                district: farm['district']!,
-                                ward: farm['ward']!,
-                                street: farm['street']!,
-                                productionPeriod: farm['productionPeriod']!,
-                                farmerName: farm['farmerName']!,
-                                phone: farm['phone']!,
-                                email: farm['email']!,
+                                isMine: false,
+                                farm: similarFarm,
                               ),
                             ),
                           );
