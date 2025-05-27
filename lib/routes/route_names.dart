@@ -7,5 +7,7 @@ class FarmLinkRoutes {
   static String changePasswordScreen = '/changePassword';  
   static String chatScreen = '/chatWithAI';  
   static String homePage = '/homePage';  
-  static String activateAccount = '/activateAccount';  
+  static String activateAccount = '/activateAccount';
+  static String viewFaq = '/viewFaq';
+  static String editFaq = '/editFaq';
 }

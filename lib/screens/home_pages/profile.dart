@@ -1,14 +1,15 @@
-import 'package:farmlink/routes/route_names.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/utility/app_theme_provider.dart';
 import '../../providers/auth_provider.dart';
 import '../../providers/utility/biometric_provider.dart';
-import '../../providers/utility/current_page_provider.dart';
+import '../../providers/utility/bottom_navigation_provider.dart';
 import '../../providers/utility/language_provider.dart';
 import '../../repository/local_storage.dart';
+import '../../routes/route_names.dart';
 import '../../widgets/profile_list_tile.dart';
 
 class Profile extends StatefulWidget {
@@ -22,7 +23,7 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Consumer5<AuthProvider, LanguageProvider, AppThemeProvider,
-            BiometricProvider, CurrentPageProvider>(
+            BiometricProvider, BottomNavigationProvider>(
         builder: (context, profileProvider, languageProvider, appThemeProvider,
             biometricProvider, currentPageProvider, child) {
       return SingleChildScrollView(
@@ -48,23 +49,26 @@ class _ProfileState extends State<Profile> {
             //     title: "Manager",
             //     subtitle: "Role",
             //   ),
-            // buildListTile(
-            //   icon: HeroIcons.briefcase,
-            //   iconColor: Theme.of(context).colorScheme.primary,
-            //   title: "${profileProvider.userData?['username']}",
-            //   subtitle: "Business Name",
-            // ),
-            // buildListTile(
-            //   icon: HeroIcons.briefcase,
-            //   iconColor: Theme.of(context).colorScheme.primary,
-            //   title: "${profileProvider.userData?['username']}",
-            //   subtitle: "Product demand",
-            // ),
+            buildListTile(
+              icon: HeroIcons.briefcase,
+              iconColor: Theme.of(context).colorScheme.primary,
+              title: "Forum",
+              subtitle: "Get Insites and upates from others",
+            ),
+            buildListTile(
+              icon: HeroIcons.briefcase,
+              iconColor: Theme.of(context).colorScheme.primary,
+              title: "FAQs",
+              subtitle: "Get answers to frequently asked questions",
+              onTap: () {
+                Navigator.pushNamed(context, FarmLinkRoutes.viewFaq);
+              },
+            ),
             buildListTile(
               icon: HeroIcons.clipboardDocumentCheck,
               iconColor: Theme.of(context).colorScheme.primary,
-              title: "Report",
-              subtitle: "View purchase history",
+              title: "Financial Inclusion",
+              subtitle: "Explore farmers groups and info",
               trailingIcon: HeroIcons.chevronRight,
               onTap: () {
                 // Navigator.pushNamed(context, FarmLinkRoutes.report);
@@ -149,8 +153,13 @@ class _ProfileState extends State<Profile> {
                           child: Text("Cancel"),
                         ),
                         TextButton(
-                            onPressed: () {
+                            onPressed: () async {
+                              final session = FlutterSecureStorage();
+                              await session.deleteAll();
                               Navigator.of(context).pop(true);
+                              currentPageProvider.changeCurrentPage(0);
+                              Navigator.pushReplacementNamed(
+                                  context, FarmLinkRoutes.loginScreen);
                             },
                             child: Text(
                               "Confirm",

@@ -1,5 +1,6 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
@@ -74,13 +75,11 @@ class AuthProvider extends ChangeNotifier {
                 Provider.of<CategoryProvider>(context, listen: false);
             final productProvider =
                 Provider.of<ProductsProvider>(context, listen: false);
-            log("===============CALLING FARMS========================");
 
             await farmProvider.fetchFarms();
             await farmProvider.fetchFarms(isMine: true);
 
             await categoryProvider.fetchAllCategories();
-            log("===============CALLING PRODUCTS========================");
             await productProvider.fetchProducts();
           }
           loginSuccess = true;

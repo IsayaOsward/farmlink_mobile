@@ -1,5 +1,9 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:farmlink/configs/base_url.dart';
 import 'package:farmlink/models/farm_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -25,11 +29,6 @@ class FarmDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<String> crops = ['Tomatoes', 'Cabbage', 'Carrots', 'Onions'];
-    final List<String> images = [
-      'https://img.freepik.com/free-photo/sunny-meadow-landscape_1112-134.jpg',
-      'https://img.freepik.com/free-photo/beautiful-shot-cornfield-with-blue-sky_181624-20783.jpg',
-      'https://img.freepik.com/free-photo/so-many-vegetables-this-field_181624-18619.jpg',
-    ];
 
     return Scaffold(
       appBar: AppBar(
@@ -67,7 +66,10 @@ class FarmDetailPage extends StatelessWidget {
           children: [
             Text(
               'Main Crop:',
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             const SizedBox(height: 8),
             Text('Production Period: '),
@@ -101,14 +103,15 @@ class FarmDetailPage extends StatelessWidget {
               height: 200,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: images.length,
+                itemCount: farm.media.length,
                 itemBuilder: (_, i) => Container(
                   margin: const EdgeInsets.only(right: 10),
                   width: 300,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
                     image: DecorationImage(
-                      image: NetworkImage(images[i]),
+                      image:
+                          NetworkImage(mediaBaseUrl + farm.media[i].mediaPath),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -124,8 +127,8 @@ class FarmDetailPage extends StatelessWidget {
                   color: Colors.green),
             ),
             const SizedBox(height: 8),
-            const Text(
-              'This farm practices organic farming with a focus on sustainability. It has been operating since 2015 and is known for high quality fresh produce.',
+            Text(
+              farm.description,
               style: TextStyle(fontSize: 14),
             ),
             const SizedBox(height: 16),
@@ -137,34 +140,90 @@ class FarmDetailPage extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   color: Colors.green),
             ),
-            Text('Region:'),
-            Text('District: '),
-            Text('Ward: '),
-            Text('Street: '),
+            Text('This farm is located at ${farm.location}'),
             const SizedBox(height: 16),
-            const Text(
-              'Farmer Contact Info',
-              style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.green),
-            ),
             const SizedBox(height: 8),
-            Text('Name: '),
-            GestureDetector(
-              // onTap: () => _launchPhone(phone),
-              child: Text(
-                'Phone:',
-                style: const TextStyle(color: Colors.green),
+            if (!isMine)
+              Column(
+                spacing: 10,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Farmer Contact Info',
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.green),
+                  ),
+                  GestureDetector(
+                    onLongPress: () => Clipboard.setData(ClipboardData(
+                      text: "${farm.owner.firstName}${farm.owner.lastName}",
+                    )).then((_) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: const Text('Copied to clipboard!'),
+                        ),
+                      );
+                    }),
+                    child: Wrap(
+                      children: [
+                        Text(
+                          'Name: ',
+                        ),
+                        Text(
+                          "${farm.owner.firstName}${farm.owner.lastName}",
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        )
+                      ],
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () => _launchPhone(farm.owner.phone),
+                    onLongPress: () => Clipboard.setData(
+                            ClipboardData(text: "+${farm.owner.phone}"))
+                        .then((_) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: const Text('Copied to clipboard!'),
+                        ),
+                      );
+                    }),
+                    child: Wrap(children: [
+                      Text(
+                        'Phone: ',
+                      ),
+                      Text(
+                        '+${farm.owner.phone}',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ]),
+                  ),
+                  GestureDetector(
+                    onTap: () => _launchEmail(farm.owner.email),
+                    onLongPress: () {
+                      Clipboard.setData(ClipboardData(text: farm.owner.email))
+                          .then((_) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: const Text('Copied to clipboard!'),
+                          ),
+                        );
+                      });
+                    },
+                    child: Wrap(
+                      children: [
+                        Text(
+                          'Email: ',
+                        ),
+                        Text(
+                          farm.owner.email,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-            ),
-            GestureDetector(
-              // onTap: () => _launchEmail(email),
-              child: Text(
-                'Email: ',
-                style: const TextStyle(color: Colors.green),
-              ),
-            ),
           ],
         ),
       ),

@@ -59,10 +59,10 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
     Navigator.pushNamed(context, FarmLinkRoutes.registrationScreen);
   }
 
-  void _navigateToDealer(BuildContext context) {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (_) => DealerMainScreen()));
-  }
+  // void _navigateToDealer(BuildContext context) {
+  //   Navigator.push(
+  //       context, MaterialPageRoute(builder: (_) => DealerMainScreen()));
+  // }
 
   void _navigateToChatWithAI(BuildContext context) {
     Navigator.push(
@@ -213,13 +213,6 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                                 "Don't have an account? Create an account",
                                 style: TextStyle(color: Colors.blue),
                               ),
-                            ),
-                          ),
-                          TextButton(
-                            onPressed: () => _navigateToDealer(context),
-                            child: const Text(
-                              "Dealer",
-                              style: TextStyle(color: Colors.blue),
                             ),
                           ),
                         ],

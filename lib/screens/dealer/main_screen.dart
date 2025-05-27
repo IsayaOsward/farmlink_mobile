@@ -1,10 +1,10 @@
-import 'package:farmlink/providers/auth_provider.dart';
-import 'package:farmlink/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:provider/provider.dart';
 
+import '../../providers/auth_provider.dart';
 import '../../providers/utility/bottom_navigation_provider.dart';
+import '../../widgets/custom_app_bar.dart';
 import '../home_pages/product_categories.dart';
 import '../home_pages/product_list.dart';
 import '../home_pages/profile.dart';
