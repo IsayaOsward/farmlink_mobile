@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 class DefaultResponseModel {
   final String id;
   final bool status;
@@ -15,7 +13,6 @@ class DefaultResponseModel {
 
   /// Factory method to create a `DefaultResponseModel` from JSON
   factory DefaultResponseModel.fromJson(Map<String, dynamic> json) {
-    log("===================$json");
     return DefaultResponseModel(
       id: json['id'] ?? "0",
       status: json['status'] ?? false,

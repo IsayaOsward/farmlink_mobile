@@ -6,7 +6,7 @@ import '../screens/authentication/change_password.dart';
 import '../screens/authentication/login.dart';
 import '../screens/authentication/registration.dart';
 import '../screens/authentication/reset_password.dart';
-import '../screens/faq/create_faq.dart';
+import '../screens/forum/view_forum.dart';
 import '../screens/home_pages/chat_page.dart';
 import '../screens/home_pages/main_page.dart';
 import '../screens/on_boarding_screen/welcome_page.dart';
@@ -26,6 +26,7 @@ class RouteGenerator {
       FarmLinkRoutes.homePage: (_, __) => MainScreen(),
       FarmLinkRoutes.onBoardingScreen: (_, __) => OnboardingScreen(),
       FarmLinkRoutes.viewFaq: (_, __) => ViewFaq(),
+      FarmLinkRoutes.viewForum: (_, __) => ViewForum(),
     };
 
     // Route for ActivateAccount where token is passed as an argument

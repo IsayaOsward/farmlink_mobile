@@ -1,12 +1,10 @@
-import 'dart:developer';
-
-import 'package:farmlink/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/utility/location_provider.dart';
 import '../../utils/validations.dart';
+import '../../widgets/custom_button.dart';
 import '../../widgets/custom_text_form_field.dart';
 import 'location_fields.dart';
 
@@ -106,9 +104,7 @@ class _FarmRegistrationPageState extends State<FarmRegistrationPage> {
                                   buttonText: "Register",
                                   onPressed: () {
                                     if (_formKey.currentState?.validate() ??
-                                        false) {
-                                      log("=============FORM IS VALID");
-                                    }
+                                        false) {}
                                   })
                               : SizedBox.shrink());
                     }),

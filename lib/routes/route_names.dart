@@ -10,4 +10,5 @@ class FarmLinkRoutes {
   static String activateAccount = '/activateAccount';
   static String viewFaq = '/viewFaq';
   static String editFaq = '/editFaq';
+  static String viewForum = '/viewForum';
 }

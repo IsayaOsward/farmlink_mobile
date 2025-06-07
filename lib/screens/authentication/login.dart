@@ -1,16 +1,16 @@
-import 'package:farmlink/routes/route_names.dart';
 import 'package:farmlink/screens/dealer/main_screen.dart';
-import 'package:farmlink/screens/home_pages/chat_page.dart';
-import 'package:farmlink/utils/image_assets.dart';
-import 'package:farmlink/widgets/custom_button.dart';
-import 'package:farmlink/widgets/custom_text_form_field.dart';
-import 'package:farmlink/widgets/toasts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/auth_provider.dart';
+import '../../routes/route_names.dart';
+import '../../utils/image_assets.dart';
+import '../../widgets/custom_button.dart';
+import '../../widgets/custom_text_form_field.dart';
+import '../../widgets/toasts.dart';
+import '../home_pages/chat_page.dart';
 import '../home_pages/main_page.dart';
 
 class Login extends StatefulWidget {
@@ -22,7 +22,7 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
   final userNameController =
-      TextEditingController(text: "isayaosward97@gmail.com");
+      TextEditingController(text: "ionthefirst79@gmail.com");
   final passwordController = TextEditingController(text: "Nyama@123");
 
   late AnimationController _animationController;
@@ -190,11 +190,22 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                                   message: "Login success",
                                   infoType: "success",
                                 );
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (_) => MainScreen()),
-                                );
+
+                                if (authProvider.userData!.accountType ==
+                                    "PRODUCER") {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => MainScreen()),
+                                  );
+                                } else {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => DealerMainScreen(),
+                                    ),
+                                  );
+                                }
                               } else {
                                 showCustomSnackBar(
                                   context: context,

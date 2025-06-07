@@ -50,13 +50,16 @@ class _ProfileState extends State<Profile> {
             //     subtitle: "Role",
             //   ),
             buildListTile(
-              icon: HeroIcons.briefcase,
+              icon: HeroIcons.chatBubbleLeftRight,
               iconColor: Theme.of(context).colorScheme.primary,
               title: "Forum",
               subtitle: "Get Insites and upates from others",
+              onTap: () {
+                Navigator.pushNamed(context, FarmLinkRoutes.viewForum);
+              },
             ),
             buildListTile(
-              icon: HeroIcons.briefcase,
+              icon: HeroIcons.questionMarkCircle,
               iconColor: Theme.of(context).colorScheme.primary,
               title: "FAQs",
               subtitle: "Get answers to frequently asked questions",

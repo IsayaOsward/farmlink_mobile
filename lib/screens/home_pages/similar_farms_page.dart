@@ -5,8 +5,7 @@ import 'package:provider/provider.dart';
 import 'farm_details.dart';
 
 class SimilarFarmsPage extends StatelessWidget {
-  final List<Map<String, String>> similarFarms;
-  const SimilarFarmsPage({super.key, required this.similarFarms});
+  const SimilarFarmsPage({super.key, });
 
   @override
   Widget build(BuildContext context) {

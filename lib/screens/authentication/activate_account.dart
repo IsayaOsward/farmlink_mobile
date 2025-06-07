@@ -1,14 +1,12 @@
-import 'dart:developer';
-
-import 'package:farmlink/utils/image_assets.dart';
-import 'package:farmlink/widgets/custom_button.dart';
-import 'package:farmlink/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 
-import '../../providers/auth_provider.dart'; // Importing spin kit for loader
+import '../../providers/auth_provider.dart';
+import '../../utils/image_assets.dart';
+import '../../widgets/custom_button.dart';
+import '../../widgets/custom_text_form_field.dart'; // Importing spin kit for loader
 
 class ActivateAccount extends StatefulWidget {
   final String token;
@@ -65,8 +63,6 @@ class _ActivateAccountState extends State<ActivateAccount> {
   @override
   Widget build(BuildContext context) {
     final authProvider = context.watch<AuthProvider>();
-
-    log("================TOKEN ==================${widget.token}");
 
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;

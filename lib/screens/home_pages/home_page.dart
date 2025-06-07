@@ -9,58 +9,6 @@ import 'similar_farms_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
-
-  final List<Map<String, String>> similarFarms = const [
-    {
-      'farmName': 'Lakeview Farm',
-      'mainCrop': 'Tomatoes',
-      'region': 'Arusha',
-      'district': 'Arusha City',
-      'ward': 'Ilboru',
-      'street': 'Farm Road',
-      'productionPeriod': 'March - August',
-      'farmerName': 'Daniel Joseph',
-      'phone': '+255716543210',
-      'email': 'daniel.joseph@example.com',
-    },
-    {
-      'farmName': 'Majengo Organics',
-      'mainCrop': 'Avocados',
-      'region': 'Kilimanjaro',
-      'district': 'Moshi',
-      'ward': 'Majengo',
-      'street': 'Green St',
-      'productionPeriod': 'January - May',
-      'farmerName': 'Emily Massawe',
-      'phone': '+255717654321',
-      'email': 'emily.massawe@example.com',
-    },
-    {
-      'farmName': 'GreenSprout Co.',
-      'mainCrop': 'Onions',
-      'region': 'Dodoma',
-      'district': 'Dodoma Urban',
-      'ward': 'Kikuyu South',
-      'street': 'Onion Lane',
-      'productionPeriod': 'April - September',
-      'farmerName': 'Peter Msofe',
-      'phone': '+255718765432',
-      'email': 'peter.msofe@example.com',
-    },
-    {
-      'farmName': 'Carrot Bros Farm',
-      'mainCrop': 'Carrots',
-      'region': 'Morogoro',
-      'district': 'Morogoro Urban',
-      'ward': 'Kihonda',
-      'street': 'Carrot Ave',
-      'productionPeriod': 'February - July',
-      'farmerName': 'Neema Juma',
-      'phone': '+255719876543',
-      'email': 'neema.juma@example.com',
-    },
-  ];
-
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -183,8 +131,7 @@ class HomePage extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (_) =>
-                                  SimilarFarmsPage(similarFarms: similarFarms),
+                              builder: (_) => SimilarFarmsPage(),
                             ),
                           );
                         },
@@ -203,7 +150,6 @@ class HomePage extends StatelessWidget {
                         ? 5
                         : farmProvider.allFarmsResponseData.data.length,
                     itemBuilder: (_, index) {
-                      final farm = similarFarms[index];
                       final similarFarm =
                           farmProvider.allFarmsResponseData.data[index];
                       return GestureDetector(
@@ -240,7 +186,7 @@ class HomePage extends StatelessWidget {
                                     ),
                                   ),
                                   Text(
-                                    'Crop: ${farm['mainCrop']}',
+                                    'Crop: ${similarFarm.name}',
                                     style: const TextStyle(fontSize: 12),
                                   ),
                                   Text(
